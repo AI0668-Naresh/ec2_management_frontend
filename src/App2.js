@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <div>
-        <h1>React-Flask JWT Authentication</h1>
+        <h1>test React-Flask JWT Authentication</h1>
         <Switch>
           {/* Public Route */}
           <Route path="/login" component={Login} />

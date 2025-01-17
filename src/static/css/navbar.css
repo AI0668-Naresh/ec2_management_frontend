@@ -1,23 +1,48 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
-* {box-sizing: border-box;}
-
-body {
-  font-family: "Montserrat", sans-serif;
-  background-color: #fff;
-  /* display: flex; */
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  min-height: 100vh;
-  margin: 0;
-  transition: background 0.2s linear;
+.navbar {
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
 }
 
-body.dark {background-color: #292c35;} /* #9b59b6 */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+}
 
-body.dark h1, body.dark .support a {color: #fff;}
+.navbar-logo {
+  width: 80px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.brand-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.nav-link {
+  color: #333;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #007bff;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+}
+
+.dark-mode-toggle {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
 
 .checkbox {
   opacity: 0;
@@ -25,7 +50,7 @@ body.dark h1, body.dark .support a {color: #fff;}
 }
 
 .checkbox-label {
-  background-color: #111;
+  background-color: #444;
   width: 50px;
   height: 26px;
   border-radius: 50px;
@@ -37,9 +62,17 @@ body.dark h1, body.dark .support a {color: #fff;}
   align-items: center;
 }
 
-.fa-moon {color: #f1c40f;}
+.icon-moon {
+  color: #f1c40f;
+  font-size: 12px;
+  margin-left: 5px;
+}
 
-.fa-sun {color: #f39c12;}
+.icon-sun {
+  color: #f39c12;
+  font-size: 12px;
+  margin-right: 5px;
+}
 
 .checkbox-label .ball {
   background-color: #fff;
@@ -56,29 +89,19 @@ body.dark h1, body.dark .support a {color: #fff;}
   transform: translateX(24px);
 }
 
-
-
-
-
-
-
-
-
-/*  Support me if you like it */
-.support {
-	position: absolute;
-	right: 20px;
-	bottom: 20px;
+.admin-button,
+.logout-button {
+  font-size: 14px;
+  padding: 5px 10px;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.support a {
-  color: #292c35;
-  font-size: 32px;
-  backface-visibility: hidden;
-  display: inline-block;
-  transition: transform 0.2s ease;
+.admin-button:hover {
+  background-color: #dc3545;
+  color: #fff;
 }
 
-.support a:hover{
-  transform: scale(1.1);
+.logout-button:hover {
+  background-color: #28a745;
+  color: #fff;
 }

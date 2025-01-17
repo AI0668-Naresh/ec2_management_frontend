@@ -88,7 +88,7 @@ function Home() {
             <div className="content-container">
               <h3>AWS Machine Launch</h3>
               <p>Seamlessly launch your AWS EC2 instances.</p>
-              <button onClick={() => handleNavigation('/aws-launch')}>AWS Machine Launch</button>
+              <button onClick={() => handleNavigation('/AWSlaunch')}>AWS Machine Launch</button>
             </div>
           </div>
         </div>

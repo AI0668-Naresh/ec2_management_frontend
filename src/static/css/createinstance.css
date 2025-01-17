@@ -1,13 +1,14 @@
 .create-instance-wrapper {
-    max-width: 600px;
+    width: 80%;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    background-color: white;
+    
   }
-  
+
   .create-instance-wrapper h2 {
     text-align: center;
     margin-bottom: 20px;
@@ -47,10 +48,12 @@
   }
   
   .btn {
-    display: block;
-    width: 100%;
+    display: inline-block; /* Ensures the button width is not stretched */
+    margin: 20px auto; /* Centers the button horizontally */
     padding: 10px;
+    width: 30%;
     font-size: 16px;
+    text-align: center;
     font-weight: bold;
     color: #fff;
     background-color: #007bff;
@@ -64,3 +67,49 @@
     background-color: #0056b3;
   }
   
+  /* Add this to center the button container */
+  .create-instance-form {
+    text-align: center; /* Centers the button and other elements in the form */
+  }
+  
+  .create-instance-form .form-row.custom-ami-row {
+    display: flex;
+    width: 100%; /* Make the row take full width */
+    justify-content: flex-end; /* Align to the right */
+    margin-top: 20px; /* Optional: spacing before the custom AMI field */
+  }
+  
+  .create-instance-form .form-row.custom-ami-row .form-group {
+    flex: 0 0 32.6%; /* Set the width of the form group to 40% */
+    text-align: center; /* Align the label to the right */
+  }
+  /* Style for the count field row */
+.create-instance-form .form-row.count-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px; /* Optional: spacing before the count field */
+}
+
+/* Style for the individual count field (machine count or input count) */
+.create-instance-form .form-row.count-row .form-group {
+  flex: 1;
+  margin-right: 10px; /* Space between input fields */
+}
+
+/* Styling for the count input field */
+.create-instance-form .form-row.count-row .form-group input {
+  width: 100%; /* Make input take up full width of the form group */
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.hhh{
+    margin: 20px auto; 
+    padding: 10px;
+    width: 30%;
+    font-size: 16px;
+    text-align: center;
+
+}

@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom'; // Import useLocation to access state
 import '../static/css/table.css'; // Assuming your CSS is in this file
 
+function Table() {
+    const location = useLocation();
+    const data = location.state?.data || [];  // Access the data passed via navigation
 
-function Table({ data }) {
     const [searchTerm, setSearchTerm] = useState('');
     const [filters, setFilters] = useState({});
 
     // Columns for which filters should not appear
-    const noFilterColumns = ['instance_name', 'instance_id', 'public_ip', 'private_ip', 'ipv6']; // Add column names here
+    const noFilterColumns = ['instance_name', 'instance_id', 'public_ip', 'private_ip', 'ipv6'];
 
     // Handle filter selection
     const handleFilterChange = (column, value) => {
@@ -61,7 +64,6 @@ function Table({ data }) {
                             "account",
                             "region",
                             "platform",
-                            
                         ].map((column, index) => (
                             <th key={index}>
                                 <div className="filter-container">
@@ -98,7 +100,6 @@ function Table({ data }) {
                                 <td>{item.account}</td>
                                 <td>{item.region}</td>
                                 <td>{item.platform}</td>
-                                
                             </tr>
                         ))
                     ) : (
@@ -113,3 +114,4 @@ function Table({ data }) {
 }
 
 export default Table;
+

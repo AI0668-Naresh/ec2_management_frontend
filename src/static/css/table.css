@@ -6,7 +6,7 @@
 
 body {
     font-family: Helvetica, Arial, sans-serif;
-    height: auto;
+    height: 100vh;
     -webkit-font-smoothing: antialiased;
     /* background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1)); */
     background: linear-gradient(90deg, #efd5ff 0%, #515ada 100%);

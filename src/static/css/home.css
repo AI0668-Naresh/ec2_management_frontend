@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --bg-dark: #121212;
+    --bg-light: #f4f4f4;
+    --text-dark: #ffffff;
+    --text-light: #000000;
+    --accent-color: #ffcc00; /* For headers and accents */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    /* font-family: 'Roboto', sans-serif; Professional and modern font */
+    /* background-color: var(--bg-dark); */
+    /* color: var(--text-dark); */
+    /* overflow-x: hidden; */
+    /* transition: all 0.3s ease-in-out; */
+}
+
+/* .theme-light {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+} */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background: rgba(0, 0, 0, 0.7); */
+    z-index: 1000;
+    font-family: 'Poppins', sans-serif; /* Clean and modern font for header */
+}
+
+header h1 {
+    font-size: 1.5rem;
+    /* color: var(--accent-color); */
+    
+}
+
+.theme-toggle {
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #ff0099, #ffcc00); /* Gradient background */
+    color: var(--bg-dark);
+    transition: background 0.3s, color 0.3s ease;
+    font-family: 'Poppins', sans-serif; /* Updated to match modern font */
+}
+
+.theme-light .theme-toggle {
+    background: linear-gradient(45deg, #ff6600, #ffcc00); /* Light mode gradient background */
+    color: var(--bg-dark);
+}
+
+.theme-toggle:hover {
+    background: linear-gradient(45deg, #ffcc00, #ff0099); /* Hover effect with inverted gradient */
+    color: var(--bg-light); /* Text color change on hover */
+}
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    position: relative;
+    text-align: center;
+    padding: 0 2rem;
+    font-family: 'Roboto', sans-serif; /* Professional font for main content */
+}
+
+main h2 {
+    font-size: 4rem;
+    font-weight: bold;
+    user-select: none;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+    animation: fadeIn 2s;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+    font-family: 'Poppins', sans-serif; /* Clean font for headers */
+}
+main h3{
+    user-select: none;
+    font-weight: bold;
+}
+
+main p {
+    user-select: none;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    animation: fadeIn 3s;
+    color: var(--text-dark);
+    font-family: 'Roboto', sans-serif; /* Professional font for body text */
+}
+
+.machine-sections {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.machine-container {
+    width: 45%;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.machine-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.video-container video {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.content-container {
+    padding: 1rem;
+    text-align: center;
+}
+
+.content-container h3 {
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif; /* Clean font for headers */
+}
+
+.content-container p {
+    margin-bottom: 1rem;
+    color: #ddd;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif; /* Modern font for body text */
+}
+
+.content-container button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: var(--text-dark);
+    color: var(--bg-dark);
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif; /* Modern and professional font */
+}
+
+.content-container button:hover {
+    transform: scale(1.5);
+    background: var(--text-light);
+    color: var(--bg-light);
+}
+
+.theme-light .content-container button {
+    background: var(--text-light);
+    color: var(--bg-light);
+}
+
+.theme-light .content-container button:hover {
+    background: var(--text-dark);
+    color: var(--bg-dark);
+}
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .machine-sections {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .machine-container {
+        width: 90%;
+    }
+}

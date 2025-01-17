@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import '../static/css/navbar.css';
+// import '../static/js/navbar.js';
+import { PiSunDimFill } from "react-icons/pi";
 
 function Navbar({ handleLogout }) {
   return (
-    <div>
+    <div style={{position: 'sticky', top: '0', zIndex: '1000'}}>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <Link className="navbar-brand" to="#">
@@ -73,13 +76,21 @@ function Navbar({ handleLogout }) {
               </li>
             </ul>
             <div >
-            <button className="btn btn-outline-danger" style={{ marginRight: '20px' }}>
+              <div>
+                <input type="checkbox" class="checkbox" id="checkbox" />
+                <label for="checkbox" class="checkbox-label">
+                  <i><PiSunDimFill /></i>
+                  <i className="fas fa-sun"></i>
+                  <span className="ball"></span>
+                </label>
+              </div>
+              <button className="btn btn-outline-danger" style={{ marginRight: '20px' }}>
                 admin
               </button>
               <button className="btn btn-outline-success" onClick={handleLogout}>
                 logout
               </button>
-              </div>
+            </div>
           </div>
         </div>
       </nav>

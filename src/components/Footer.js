@@ -19,7 +19,7 @@ function Footer() {
                     <div class="col-12">
                         <p>Copyright &#169; 2045 <Link to="https://aggregateintelligence.com/">Your Site Name</Link> All Rights Reserved.</p>
 						
-						<p>Designed By <Link to="https://aggregateintelligence.com/">Naresh & Harris</Link></p>
+						<p>Designed By <Link to="https://aggregateintelligence.com/">Naresh & Harris & <a href=''>Vishnu</a></Link></p>
                     </div>
                 </div>
             </div>

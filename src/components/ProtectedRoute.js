@@ -11,12 +11,12 @@ const ProtectedRoute = ({ element, ...rest }) => {
     if (!token) return;
 
     try {
-      const response = await axios.get('http://192.168.1.109:5000/protected', {
+      const response = await axios.get('http://localhost:5000/protected', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response.data.logged_in_as);
+      // console.log(response.data.logged_in_as);
       setCkuser(true);
       // alert('Protected route accessed: ' + response.data.logged_in_as);
     } catch (error) {

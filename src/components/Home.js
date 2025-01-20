@@ -1,31 +1,3 @@
-
-// import React from 'react';
-// import '../static/css/home.css';
-// import backgroundVideo from '../static/media/background_video.mp4';
-// function Home() {
-//   return (
-//     <div>
-//       <div className="video-background">
-//         <video autoPlay muted loop>
-//         <source src={backgroundVideo} type="video/mp4" />
-//           Your browser does not support the video tag.
-//         </video>
-//       </div>
-
-//       <main>
-//         <h2>Home Page</h2>
-//         <p>Welcome to the home page!</p>
-//         <div className="animated-buttons">
-//           <button>Learn More</button>
-//           <button>Contact Us</button>
-//         </div>
-//       </main>
-//     </div>
-//   );
-// }
-
-// export default Home;
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Ensure React Router is set up
 import '../static/css/home.css';

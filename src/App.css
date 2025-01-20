@@ -1,40 +1,29 @@
-.App {
-  text-align: center;
+/* Ensure the body and html take full height */
+html, body {
+  height: 100%;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+/* The footer should be fixed at the bottom */
+#footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%; /* Make it full width */
+  background-color: #333;
   color: white;
+  padding: 0px;
+  text-align: center;
+  z-index: 1000; /* Ensures it's always on top */
 }
 
-
-
-.App-link {
-  color: #61dafb;
+/* Styling for social links */
+.social a {
+  margin: 0 10px;
+  color: white;
+  font-size: 24px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.social a:hover {
+  color: #ff6347;
 }

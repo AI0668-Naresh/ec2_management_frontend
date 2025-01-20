@@ -18,7 +18,7 @@ function Dolaunch() {
             {loading && <Loading />}
             <section className="buttons-container">
                 {[
-                    { label: 'Create Instance', url: '/create-instance' },
+                    { label: 'Create Instance', url: '/Docreateinstance' },
                     { label: 'Terminate Instance', url: '/terminate-instance' },
                     { label: 'dc-to-DigitalOcean', url: '/dc-to-digitalocean' },
                     { label: 'Insert Ips', url: '/insert-ips' },

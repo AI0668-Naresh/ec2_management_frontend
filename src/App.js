@@ -14,6 +14,8 @@ import AWSlaunch from './components/AWSlaunch';
 import Table from './components/Table';
 import Createinstance from './components/Createinstance';
 import Error from './components/Error';
+import Register from './components/Register';
+import Docreateinstance from './components/Docreateinstance';
 function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -29,7 +31,7 @@ function App() {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/register', { username, password });
+      const response = await axios.post('http://192.168.1.109:5000/register', { username, password });
       navigate("/login");
       alert('User registered successfully');
     } catch (error) {
@@ -39,7 +41,7 @@ function App() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/login', { username, password });
+      const response = await axios.post('http://192.168.1.109:5000/login', { username, password });
       const { access_token } = response.data;
 
       Cookies.set('access_token', access_token, { expires: 7 });
@@ -74,6 +76,9 @@ function App() {
           element={<ProtectedRoute element={<Table />} />}
         />
         <Route
+          path='/Docreateinstance'
+          element={<ProtectedRoute element={<Docreateinstance />} />} />
+        <Route
           path='/createinstance'
           element={<ProtectedRoute element={<Createinstance />} />} />
         <Route
@@ -90,11 +95,11 @@ function App() {
         />
         <Route
           path="/register"
-          element={<ProtectedRoute element={<Login handleSubmit={handleRegister} username={username} password={password} setUsername={setUsername} setPassword={setPassword} ch={false} />} />}
+          element={<ProtectedRoute element={<Register handleRegister={handleRegister} username={username} password={password} setUsername={setUsername} setPassword={setPassword} />} />}
         />
         <Route
           path="/login"
-          element={<Login handleSubmit={handleLogin} username={username} password={password} setUsername={setUsername} setPassword={setPassword} ch={true} />}
+          element={<Login handleSubmit={handleLogin} username={username} password={password} setUsername={setUsername} setPassword={setPassword} />}
         />
         <Route path="*" element={<Error />} />
       </Routes>

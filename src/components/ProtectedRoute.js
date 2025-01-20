@@ -11,7 +11,7 @@ const ProtectedRoute = ({ element, ...rest }) => {
     if (!token) return;
 
     try {
-      const response = await axios.get('http://localhost:5000/protected', {
+      const response = await axios.get('http://192.168.1.109:5000/protected', {
         headers: {
           Authorization: `Bearer ${token}`,
         },

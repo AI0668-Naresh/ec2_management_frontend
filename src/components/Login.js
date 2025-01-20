@@ -1,53 +1,64 @@
 import React from "react";
-function Login({handleSubmit, username, password, setUsername, setPassword, ch}) {
+import '../static/css/login.css';
+import showpassword from '../static/media/sleep-unscreen.gif'; // Show password GIF
+import hidepassword from '../static/media/view-unscreen.gif'; // Hide password GIF
+
+
+function Login({ handleSubmit, username, password, setUsername, setPassword }) {
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        padding: "2rem",
-        alignItems: "center",
-        minHeight: "100vh",
-        textAlign: "center",
-        backgroundColor: "#f5f5f5", // optional for a better background contrast
-      }}
-    >
-      <div className="card" style={{ width: "25vw" }}>
+    <div className="login-container">
+      <div className="login-card">
         <div className="card-body">
           <h2>Login</h2>
-          <div className="form-floating mb-3">
+          <div className="form-group mb-3">
             <input
               type="text"
               className="form-control"
-              id="floatingInput"
+              id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="username"
+              placeholder="User Name"
             />
-            <label htmlFor="floatingInput">Email address</label>
           </div>
-          <div className="form-floating">
+          <div className="form-group password-container">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               className="form-control"
-              id="floatingPassword"
+              id="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <label htmlFor="floatingPassword">Password</label>
-            
+            <div className="password-toggle-container">
+              <img
+                src={showpassword}
+                alt="Show Password"
+                className={`password-toggle-icon ${showPassword ? "hidden" : ""}`}
+                onClick={togglePasswordVisibility}
+              />
+              <img
+                src={hidepassword}
+                alt="Hide Password"
+                className={`password-toggle-icon ${!showPassword ? "hidden" : ""}`}
+                onClick={togglePasswordVisibility}
+              />
+            </div>
           </div>
           <div>
-            <button onClick={handleSubmit}>Login</button>
+            <button onClick={handleSubmit} className="login-btn">
+              Login
+            </button>
           </div>
-          <div>{ch?
-            <p>
-            Don't have an account? <a href="/register">Register</a>
-          </p>:<p>Alread have an account? <a href="/login">Login</a></p>
-            }
-            
-          </div>
+
+              <p>
+                Don't have an account? <a href="/register">Register</a>
+              </p>
         </div>
       </div>
     </div>

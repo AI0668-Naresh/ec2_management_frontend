@@ -24,7 +24,7 @@ function Table() {
     const fetchdata = async () => {
         try {
             setLoading(true); // Set loading to true before starting the fetch
-            const response = await axios.get(`http://localhost:5000/${ck}/instancelist`);
+            const response = await axios.get(`http://192.168.1.109:5000/${ck}/instancelist`);
             console.log(response.data);
             setData(response.data); // Set data once it's fetched successfully
         } catch (error) {

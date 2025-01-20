@@ -1,31 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../static/css/createinstance.css";
+import "../static/css/docreateinstance.css"; // New CSS for DoCreateInstance
 
-function CreateInstance() {
+function DoCreateInstance() {
   const [processName, setProcessName] = useState("");
   const [selectedAccount, setSelectedAccount] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
   const [instanceName, setInstanceName] = useState("");
-  const [instanceType, setInstanceType] = useState("");
-  const [selectedAmi, setSelectedAmi] = useState("");
-  const [customAmi, setCustomAmi] = useState("");
-  const [selectedSubnet, setSelectedSubnet] = useState("");
-  const [selectedSecurityGroup, setSelectedSecurityGroup] = useState("");
-  const [selectedIp, setSelectedIp] = useState("");  // Removed duplicate
-  const [selectedMachineInsertFormat, setMachineInsertFormat] = useState("");  // Corrected the name
+  const [selectedIp, setSelectedIp] = useState("");
+  const [selectedCountOption, setSelectedCountOption] = useState("");
   const [machineCount, setMachineCount] = useState("");
   const [inputCount, setInputCount] = useState("");
-  const [selectedCountOption, setSelectedCountOption] = useState("");
+  const [selectedMachineInsertFormat, setMachineInsertFormat] = useState("");
+  const [imageId, setImageId] = useState("");
 
   const accounts = ["Account_900", "Account_106", "Account_5646", "Account_365"];
   const regions = ["us-east-1", "us-east-2", "us-west-1", "us-west-2"];
-  const instanceTypes = ["t2.medium", "t3.medium", "t3.large", "t3.xlarge", "r5.large", "r5.xlarge"];
-  const amis = ["AMI 1", "AMI 2", "AMI 3", "Others"];
-  const subnets = ["Subnet 1", "Subnet 2", "Subnet 3"];
-  const securityGroups = ["Security Group 1", "Security Group 2", "Security Group 3"];
-  const ipOptions = ["IP 1", "IP 2", "IP 3"];
-  const machineInsertFormatOptions = ["xxxx", "yyy", "zzz"]; // Updated the variable name for consistency
+  const machineInsertFormats = ["xxxx", "yyy", "zzz"];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,13 +25,10 @@ function CreateInstance() {
       selectedAccount,
       selectedRegion,
       instanceName,
-      instanceType,
-      ami: selectedAmi === "Others" ? customAmi : selectedAmi,
-      subnet: selectedSubnet,
-      securityGroup: selectedSecurityGroup,
       ip: selectedIp,
-      machineInsertFormat: selectedMachineInsertFormat, // Corrected the reference
+      machineInsertFormat: selectedMachineInsertFormat,
       count: selectedCountOption === "MachineCount" ? machineCount : inputCount,
+      imageId,
     };
 
     try {
@@ -66,14 +54,17 @@ function CreateInstance() {
         {/* Process Name */}
         <div className="form-group">
           <label>Process Name</label>
-          <input
-            type="text"
+          <select
             className="form-control"
             value={processName}
             onChange={(e) => setProcessName(e.target.value)}
             required
             onKeyDown={(e) => handleKeyDown(e, document.getElementById("account"))}
-          />
+          >
+            <option value="">Select Process Name</option>
+            <option value="Process 1">Process 1</option>
+            <option value="Process 2">Process 2</option>
+          </select>
         </div>
 
         {/* Account */}
@@ -129,120 +120,7 @@ function CreateInstance() {
             required
             disabled={!selectedRegion}
             id="instanceName"
-            onKeyDown={(e) => handleKeyDown(e, document.getElementById("instanceType"))}
           />
-        </div>
-
-        {/* Instance Type */}
-        <div className="form-group">
-          <label>Instance Type</label>
-          <select
-            className="form-control"
-            value={instanceType}
-            onChange={(e) => setInstanceType(e.target.value)}
-            required
-            disabled={!instanceName}
-            id="instanceType"
-            onKeyDown={(e) => handleKeyDown(e, document.getElementById("ami"))}
-          >
-            <option value="">Select Instance Type</option>
-            {instanceTypes.map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* AMI */}
-        <div className="form-group" id="ami">
-          <label>AMI</label>
-          <select
-            className="form-control"
-            value={selectedAmi}
-            onChange={(e) => setSelectedAmi(e.target.value)}
-            required
-            disabled={!instanceType}
-            onKeyDown={(e) => handleKeyDown(e, document.getElementById("subnet"))}
-          >
-            <option value="">Select AMI</option>
-            {amis.map((ami) => (
-              <option key={ami} value={ami}>
-                {ami}
-              </option>
-            ))}
-          </select>
-          {selectedAmi === "Others" && (
-            <input
-              type="text"
-              className="form-control mt-2"
-              placeholder="Enter Custom AMI"
-              value={customAmi}
-              onChange={(e) => setCustomAmi(e.target.value)}
-              required
-              onKeyDown={(e) => handleKeyDown(e, document.getElementById("subnet"))}
-            />
-          )}
-        </div>
-
-        {/* Subnet */}
-        <div className="form-group" id="subnet">
-          <label>Subnet</label>
-          <select
-            className="form-control"
-            value={selectedSubnet}
-            onChange={(e) => setSelectedSubnet(e.target.value)}
-            required
-            disabled={!selectedAmi}
-            onKeyDown={(e) => handleKeyDown(e, document.getElementById("securityGroup"))}
-          >
-            <option value="">Select Subnet</option>
-            {subnets.map((subnet) => (
-              <option key={subnet} value={subnet}>
-                {subnet}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Security Group */}
-        <div className="form-group" id="securityGroup">
-          <label>Security Group</label>
-          <select
-            className="form-control"
-            value={selectedSecurityGroup}
-            onChange={(e) => setSelectedSecurityGroup(e.target.value)}
-            required
-            disabled={!selectedSubnet}
-            onKeyDown={(e) => handleKeyDown(e, document.getElementById("ip"))}
-          >
-            <option value="">Select Security Group</option>
-            {securityGroups.map((group) => (
-              <option key={group} value={group}>
-                {group}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* IP Address */}
-        <div className="form-group" id="ip">
-          <label>IP Address</label>
-          <select
-            className="form-control"
-            value={selectedIp}
-            onChange={(e) => setSelectedIp(e.target.value)}
-            required
-            disabled={!selectedSecurityGroup}
-            onKeyDown={(e) => handleKeyDown(e, document.getElementById("countOption"))}
-          >
-            <option value="">Select IP Address</option>
-            {ipOptions.map((ip) => (
-              <option key={ip} value={ip}>
-                {ip}
-              </option>
-            ))}
-          </select>
         </div>
 
         {/* Machine Insert Format */}
@@ -253,16 +131,29 @@ function CreateInstance() {
             value={selectedMachineInsertFormat}
             onChange={(e) => setMachineInsertFormat(e.target.value)}
             required
-            disabled={!selectedSecurityGroup}
-            onKeyDown={(e) => handleKeyDown(e, document.getElementById("countOption"))}
+            disabled={!instanceName}
+            onKeyDown={(e) => handleKeyDown(e, document.getElementById("imageId"))}
           >
             <option value="">Select Machine Insert Format</option>
-            {machineInsertFormatOptions.map((format) => (
+            {machineInsertFormats.map((format) => (
               <option key={format} value={format}>
                 {format}
               </option>
             ))}
           </select>
+        </div>
+
+        {/* Image ID */}
+        <div className="form-group" id="imageId">
+          <label>Image ID</label>
+          <input
+            type="text"
+            className="form-control"
+            value={imageId}
+            onChange={(e) => setImageId(e.target.value)}
+            required
+            disabled={!selectedMachineInsertFormat}
+          />
         </div>
 
         {/* Count Option */}
@@ -276,7 +167,7 @@ function CreateInstance() {
                 value="MachineCount"
                 checked={selectedCountOption === "MachineCount"}
                 onChange={(e) => setSelectedCountOption(e.target.value)}
-                disabled={!selectedIp}
+                disabled={!imageId}
               />
               Machine Count
             </label>
@@ -287,7 +178,7 @@ function CreateInstance() {
                 value="InputCount"
                 checked={selectedCountOption === "InputCount"}
                 onChange={(e) => setSelectedCountOption(e.target.value)}
-                disabled={!selectedIp}
+                disabled={!imageId}
               />
               Input Count
             </label>
@@ -300,6 +191,7 @@ function CreateInstance() {
               value={machineCount}
               onChange={(e) => setMachineCount(e.target.value)}
               required
+              disabled={!selectedCountOption || selectedCountOption !== "MachineCount"}
             />
           )}
           {selectedCountOption === "InputCount" && (
@@ -310,12 +202,13 @@ function CreateInstance() {
               value={inputCount}
               onChange={(e) => setInputCount(e.target.value)}
               required
+              disabled={!selectedCountOption || selectedCountOption !== "InputCount"}
             />
           )}
         </div>
 
         {/* Submit Button */}
-        <button type="submit" className="btn btn-success" disabled={!selectedCountOption}>
+        <button type="submit" className="btn btn-success" disabled={!instanceName || !imageId}>
           Submit
         </button>
       </form>
@@ -323,4 +216,4 @@ function CreateInstance() {
   );
 }
 
-export default CreateInstance;
+export default DoCreateInstance;

@@ -1,0 +1,116 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Background and Layout */
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #0e1e4b;
+    padding: 20px;
+  }
+  
+  /* Login Card */
+  .login-card {
+    background: rgb(37, 37, 37);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    padding: 30px;
+    width: 350px;
+    text-align: center;
+  }
+  
+  /* Card Header */
+  .card-body h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+  }
+  
+  /* Input Fields */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-control {
+    background-color: #fff; /* Default white background */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #000; /* Black text for contrast */
+    padding: 15px;
+    width: 100%;
+    font-size: 1.1rem;
+    outline: none;
+    transition: 0.3s ease;
+  }
+  
+  .form-control:focus {
+    background-color: #fff; /* Keep white background on focus */
+    border-color: #01d28e; /* Highlight border on focus */
+    box-shadow: 0 0 10px rgba(1, 210, 142, 0.5); /* Add a glow effect */
+  }
+  
+  
+  .form-control::placeholder {
+    color: #aaa;
+    font-size: 1rem;
+  }
+  
+  /* Button Styles */
+  .login-btn {
+    background-color: #01d28e;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+  
+  .login-btn:hover {
+    background-color: #04a17c;
+  }
+  
+  /* Password Container */
+  .password-container {
+    position: relative;
+  }
+  
+  /* Password Toggle Icon */
+  .password-toggle-container {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 30px;
+  }
+  
+  .password-toggle-icon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+  
+  .password-toggle-icon.hidden {
+    display: none;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .login-card {
+      width: 80%;
+    }
+  }
+  

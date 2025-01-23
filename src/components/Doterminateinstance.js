@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../static/css/doterminateinstance.css";
 import axios from "axios";
-function DoTerminateInstance() {
+function DoTerminateInstance({ prefix_uri}) {
   const [selectedAccount, setSelectedAccount] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
@@ -26,7 +26,7 @@ function DoTerminateInstance() {
     };
 
     try {
-      const response = await axios.post("http://192.168.1.109:5000/aws/terminate_instance", data);
+      const response = await axios.post(`${prefix_uri}do_terminate_instance`, data);
       console.log(response.data);
     } catch (error) {
       console.error(error);

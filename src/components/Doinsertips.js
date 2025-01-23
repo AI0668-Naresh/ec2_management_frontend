@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import "../static/css/doinsertips.css";
 import axios from "axios";
 
-function Doinsertips() {
+function Doinsertips( {prefix_uri}) {
   const [dropletName, setDropletName] = useState("");
   const [machineInsertFormat, setMachineInsertFormat] = useState("");
   
-  const machineFormats = ["Small", "Medium", "Large"];
+  const machineFormats = ["DC", "Static", "Playwright"];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +17,8 @@ function Doinsertips() {
     };
 
     try {
-      const response = await axios.post("http://192.168.1.109:5000/digitalocean/insert_tips", data);
+      console.log(`${prefix_uri}do_insert_ips`);
+      const response = await axios.post(`${prefix_uri}do_insert_ips`, data);
       console.log(response.data);
     } catch (error) {
       console.error(error);

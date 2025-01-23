@@ -25,6 +25,7 @@ function App() {
   const [password, setPassword] = useState('');
   const [token, setToken] = useState('');
   const navigate = useNavigate();
+  const PREFIX_URI = "http://192.168.1.39:5000/";
 
   useEffect(() => {
     const savedToken = Cookies.get('access_token');
@@ -35,7 +36,7 @@ function App() {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post('http://192.168.1.109:5000/register', { username, password });
+      const response = await axios.post(`${PREFIX_URI}register`, { username, password });
       navigate("/login");
       alert('User registered successfully');
     } catch (error) {
@@ -45,10 +46,11 @@ function App() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://192.168.1.109:5000/login', { username, password });
+      const response = await axios.post(`${PREFIX_URI}login`, { username, password });
       const { access_token } = response.data;
 
       Cookies.set('access_token', access_token, { expires: 7 });
+      Cookies.set('username', username, { expires: 1 });
       setToken(access_token);
       navigate("/home");
       alert('Login successful');
@@ -69,70 +71,70 @@ function App() {
       <Routes>
         <Route
           path="/home"
-          element={<ProtectedRoute element={<Home />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Home />} />}
         />
         <Route
           path="/"
-          element={<ProtectedRoute element={<Home />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Home />} />}
         />
         <Route
           path="/instancelist"
-          element={<ProtectedRoute element={<Table />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Table />} />}
         />
         <Route
           path="/prefixlist"
-          element={<ProtectedRoute element={<Table />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Table />} />}
         />
         <Route
           path="/subnetlist"
-          element={<ProtectedRoute element={<Table />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Table />} />}
         />
         <Route
           path="/SGlist"
-          element={<ProtectedRoute element={<Table />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Table />} />}
         />
         <Route
           path="/amilist"
-          element={<ProtectedRoute element={<Table />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Table />} />}
         />
         <Route
           path='/Docreateinstance'
-          element={<ProtectedRoute element={<Docreateinstance />} />} />
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Docreateinstance prefix_uri={PREFIX_URI}/>} />} />
         <Route
           path='/Doterminateinstance'
-          element={<ProtectedRoute element={<Doterminateinstance />} />} />
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Doterminateinstance prefix_uri={PREFIX_URI} />} />} />
           <Route
           path='/Dctodigitalocean'
-          element={<ProtectedRoute element={<Dctodigitalocean />} />} />
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Dctodigitalocean prefix_uri={PREFIX_URI} />} />} />
         <Route
           path='/Doinsertips'
-          element={<ProtectedRoute element={<Doinsertips />} />} />
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Doinsertips prefix_uri={PREFIX_URI}/>} />} />
         <Route
           path='/createinstance'
-          element={<ProtectedRoute element={<Createinstance />} />} />
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Createinstance prefix_uri={PREFIX_URI}/>} />} />
         <Route
           path="/Dolaunch"
-          element={<ProtectedRoute element={<Dolaunch />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Dolaunch prefix_uri={PREFIX_URI}/>} />}
         />
         <Route
           path="/AWSlaunch"
-          element={<ProtectedRoute element={<AWSlaunch />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<AWSlaunch prefix_uri={PREFIX_URI}/>} />}
         />
         <Route
           path="/Awscreateprefix"
-          element={<ProtectedRoute element={<Awscreateprefix />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Awscreateprefix prefix_uri={PREFIX_URI}/>} />}
         />
         <Route
           path="/about"
-          element={<ProtectedRoute element={<About />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<About prefix_uri={PREFIX_URI}/>} />}
         />
         <Route
           path="/register"
-          element={<ProtectedRoute element={<Register handleRegister={handleRegister} username={username} password={password} setUsername={setUsername} setPassword={setPassword} />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Register prefix_uri={PREFIX_URI} handleRegister={handleRegister} username={username} password={password} setUsername={setUsername} setPassword={setPassword} />} />}
         />
         <Route
           path="/login"
-          element={<Login handleSubmit={handleLogin} username={username} password={password} setUsername={setUsername} setPassword={setPassword} />}
+          element={<Login prefix_uri={PREFIX_URI} handleSubmit={handleLogin} username={username} password={password} setUsername={setUsername} setPassword={setPassword} />}
         />
         <Route path="*" element={<Error />} />
       </Routes>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../static/css/doterminateinstance.css";
 import axios from "axios";
 
-function Dctodigitalocean() {
+function Dctodigitalocean({prefix_uri}) {
   const [mongoServer, setMongoServer] = useState("");
   const [websiteCode, setWebsiteCode] = useState("");
   const [inputCount, setInputCount] = useState(""); // Set initial value as an empty string
@@ -33,7 +33,7 @@ function Dctodigitalocean() {
     };
 
     try {
-      const response = await axios.post("http://192.168.1.109:5000/digitalocean/launch_instance", data);
+      const response = await axios.post(`${prefix_uri}digitalocean/launch_instance`, data);
       console.log(response.data);
     } catch (error) {
       console.error(error);

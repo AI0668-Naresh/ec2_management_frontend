@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../static/css/docreateinstance.css"; // New CSS for DoCreateInstance
+import Cookies from "js-cookie"; // Assuming you have js-cookie installed and imported
 
-function DoCreateInstance() {
+function DoCreateInstance( {prefix_uri}) {
   const [processName, setProcessName] = useState("");
   const [selectedAccount, setSelectedAccount] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
@@ -15,12 +16,15 @@ function DoCreateInstance() {
   const [imageId, setImageId] = useState("");
 
   const accounts = ["Account_900", "Account_106", "Account_5646", "Account_365"];
-  const regions = ["us-east-1", "us-east-2", "us-west-1", "us-west-2"];
+  const regions = ["NYC3"];
   const machineInsertFormats = ["xxxx", "yyy", "zzz"];
+
+  const username_v = Cookies.get("username");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
+      username: username_v,
       processName,
       selectedAccount,
       selectedRegion,
@@ -29,10 +33,12 @@ function DoCreateInstance() {
       machineInsertFormat: selectedMachineInsertFormat,
       count: selectedCountOption === "MachineCount" ? machineCount : inputCount,
       imageId,
+      // "gflags":"ygghgfh"
     };
 
     try {
-      const response = await axios.post('http://192.168.1.109:5000/aws/create_instance', data);
+      console.log(data);
+      const response = await axios.post(`${prefix_uri}do_launch_instances`, data);
       console.log(response.data);
     } catch (error) {
       console.error(error);

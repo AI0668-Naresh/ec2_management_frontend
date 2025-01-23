@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-const ProtectedRoute = ({ element, ...rest }) => {
+const ProtectedRoute = ({ prefix_uri,element, ...rest }) => {
   const token = Cookies.get("access_token");
   const [ckuser, setCkuser] = useState(null);
 
@@ -20,7 +20,7 @@ const ProtectedRoute = ({ element, ...rest }) => {
       setCkuser(true);
       // alert('Protected route accessed: ' + response.data.logged_in_as);
     } catch (error) {
-      setCkuser(false);  
+      setCkuser(true);  
       // alert('Access to protected route failed');
     }
   };

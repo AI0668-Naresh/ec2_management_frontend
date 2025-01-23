@@ -316,7 +316,7 @@ function CreateInstance() {
 
         {/* Submit Button */}
         <button type="submit" className="btn btn-success" disabled={!selectedCountOption}>
-          Submit
+        Launch Instance
         </button>
       </form>
     </div>

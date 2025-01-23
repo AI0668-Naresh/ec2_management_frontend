@@ -16,6 +16,10 @@ import Createinstance from './components/Createinstance';
 import Error from './components/Error';
 import Register from './components/Register';
 import Docreateinstance from './components/Docreateinstance';
+import Doterminateinstance from './components/Doterminateinstance';
+import Dctodigitalocean from './components/Dctodigitalocean';
+import Doinsertips from './components/Doinsertips';
+import Awscreateprefix from './components/Awscreateprefix';
 function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -76,8 +80,33 @@ function App() {
           element={<ProtectedRoute element={<Table />} />}
         />
         <Route
+          path="/prefixlist"
+          element={<ProtectedRoute element={<Table />} />}
+        />
+        <Route
+          path="/subnetlist"
+          element={<ProtectedRoute element={<Table />} />}
+        />
+        <Route
+          path="/SGlist"
+          element={<ProtectedRoute element={<Table />} />}
+        />
+        <Route
+          path="/amilist"
+          element={<ProtectedRoute element={<Table />} />}
+        />
+        <Route
           path='/Docreateinstance'
           element={<ProtectedRoute element={<Docreateinstance />} />} />
+        <Route
+          path='/Doterminateinstance'
+          element={<ProtectedRoute element={<Doterminateinstance />} />} />
+          <Route
+          path='/Dctodigitalocean'
+          element={<ProtectedRoute element={<Dctodigitalocean />} />} />
+        <Route
+          path='/Doinsertips'
+          element={<ProtectedRoute element={<Doinsertips />} />} />
         <Route
           path='/createinstance'
           element={<ProtectedRoute element={<Createinstance />} />} />
@@ -88,6 +117,10 @@ function App() {
         <Route
           path="/AWSlaunch"
           element={<ProtectedRoute element={<AWSlaunch />} />}
+        />
+        <Route
+          path="/Awscreateprefix"
+          element={<ProtectedRoute element={<Awscreateprefix />} />}
         />
         <Route
           path="/about"

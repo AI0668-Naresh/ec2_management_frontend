@@ -209,7 +209,7 @@ function DoCreateInstance() {
 
         {/* Submit Button */}
         <button type="submit" className="btn btn-success" disabled={!instanceName || !imageId}>
-          Submit
+          Launch Instance
         </button>
       </form>
     </div>

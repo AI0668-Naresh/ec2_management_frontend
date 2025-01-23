@@ -19,9 +19,9 @@ function Dolaunch() {
             <section className="buttons-container">
                 {[
                     { label: 'Create Instance', url: '/Docreateinstance' },
-                    { label: 'Terminate Instance', url: '/terminate-instance' },
-                    { label: 'dc-to-DigitalOcean', url: '/dc-to-digitalocean' },
-                    { label: 'Insert Ips', url: '/insert-ips' },
+                    { label: 'Terminate Instance', url: '/Doterminateinstance' },
+                    { label: 'dc-to-DigitalOcean', url: '/Dctodigitalocean' },
+                    { label: 'Insert Ips', url: '/Doinsertips' },
                     { label: 'List Instance', url: '/instancelist' },
                 ].map(({ label, url }) => (
                     <button

@@ -1,0 +1,75 @@
+.insert-tips-wrapper {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+.cont-wrap{
+    height: 80vh;
+}
+  .insert-tips-wrapper h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .note-text {
+    font-size: 14px;
+    color: #6c757d;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .insert-tips-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .insert-tips-form .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .insert-tips-form label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .insert-tips-form .form-control {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .insert-tips-form .form-control:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  
+  .insert-tips-form .btn {
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .insert-tips-form .btn-success {
+    background-color: #28a745;
+  }
+  
+  .insert-tips-form .btn-success:disabled {
+    background-color: #cccccc;
+  }
+  
+  .insert-tips-form .form-note {
+    font-size: 12px;
+    color: #888;
+  }
+  

@@ -4,19 +4,12 @@ import '../static/css/home.css';
 import mainBackgroundVideo from '../static/media/main-back2.mp4';
 import doBackgroundVideo from '../static/media/DO1.mp4';
 import awsBackgroundVideo from '../static/media/videoplayback.mp4';
-import Loading from './Loading'; // Import the Loading component
 
 function Home() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
 
   const handleNavigation = (path) => {
-    setLoading(true);
-
-    setTimeout(() => {
-      setLoading(false);
-      navigate(path);  // Navigate to the target page after loading
-    }, 3000);  // Adjust loading time (3 seconds in this case)
+      navigate(path); 
   };
 
   return (
@@ -64,9 +57,6 @@ function Home() {
             </div>
           </div>
         </div>
-
-        {/* Loading Animation */}
-        {loading && <Loading />}
       </main>
     </div>
   );

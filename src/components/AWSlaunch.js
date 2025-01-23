@@ -4,30 +4,27 @@ import { useNavigate } from 'react-router-dom';
 import '../static/css/AWSlaunch.css';
 
 function AWSlaunch() {
-    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    const data = 'aws';
+    const temp = 'http://192.168.1.109:5000/aws';
 
     const handleNavigation = (url) => {
-        setLoading(true);
-        // Pass data to the Table component via navigation state
-        if (url === "/instancelist") {
-            navigate(url, { state: { data } });
-        } else {
-            navigate(url);
-        }
-        setLoading(false);
+        const data = `${temp}${url}`;
+        navigate(url, { state: { data } });
     };
 
     return (
         <div className="dolaunch-container">
-            {loading && <Loading />}
             <section className="buttons-container">
                 {[
                     { label: 'Create Instance', url: '/createinstance' },
                     { label: 'Terminate Instance', url: '/terminate-instance' },
                     { label: 'Insert Ips', url: '/insert-ips' },
                     { label: 'List Instance', url: '/instancelist' },
+                    { label: 'Create Prefix', url: '/Awscreateprefix' },
+                    { label: 'List Prefix', url: '/prefixlist' },
+                    { label: 'List Subnet', url: '/subnetlist' },
+                    { label: 'List Security Group', url: '/SGlist' },
+                    { label: 'List AMI', url: '/amilist' },
                 ].map(({ label, url }) => (
                     <button
                         key={label}

@@ -1,11 +1,21 @@
 import React from 'react';
-import '../static/css/loading.css';
+import '../static/css/loading.css'; // Ensure this CSS file exists and includes the styles below
 
 function Loading() {
   return (
-    <div className="loading-container">
-      <div className="spinner"></div>
-      <p>Loading...</p>
+    <div className="loading">
+      <div className="loading-text">
+        <span className="loading-text-words">L</span>
+        <span className="loading-text-words">O</span>
+        <span className="loading-text-words">A</span>
+        <span className="loading-text-words">D</span>
+        <span className="loading-text-words">I</span>
+        <span className="loading-text-words">N</span>
+        <span className="loading-text-words">G</span>
+        <span className="loading-text-words">.</span>
+        <span className="loading-text-words">.</span>
+        <span className="loading-text-words">.</span>
+      </div>
     </div>
   );
 }

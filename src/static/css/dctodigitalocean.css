@@ -1,0 +1,112 @@
+/* Wrapper Styles */
+.terminate-instance-wrapper {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  .terminate-instance-wrapper h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #dc3545;
+  }
+  
+  /* Form Styles */
+  .terminate-instance-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .form-group input,
+  .form-group select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: #dc3545;
+    outline: none;
+  }
+  
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  .small {
+    font-size: 0.8rem;
+    color: #777;
+  }
+  
+  /* Button Styles */
+  .btn {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .btn:hover {
+    background-color: #a71d2a;
+  }
+  
+  .btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Form Notes */
+  .form-note {
+    font-size: 12px;
+    color: #777;
+    margin-top: 5px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .terminate-instance-wrapper {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    .terminate-instance-wrapper h2 {
+      font-size: 20px;
+    }
+  
+    .btn {
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+  }
+  

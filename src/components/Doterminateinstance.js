@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "../static/css/doterminateinstance.css";
 import axios from "axios";
-function DoTerminateInstance({ prefix_uri}) {
+import Cookies from "js-cookie";
+function DoTerminateInstance({ prefix_uri, user}) {
+  const token = Cookies.get("access_token");
   const [selectedAccount, setSelectedAccount] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
@@ -26,7 +28,7 @@ function DoTerminateInstance({ prefix_uri}) {
     };
 
     try {
-      const response = await axios.post(`${prefix_uri}do_terminate_instance`, data);
+      const response = await axios.post(`${prefix_uri}terminate_digitalocean_instances`, {"Sfg":"Wefrg"});
       console.log(response.data);
     } catch (error) {
       console.error(error);

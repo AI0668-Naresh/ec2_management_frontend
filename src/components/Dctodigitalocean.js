@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "../static/css/doterminateinstance.css";
 import axios from "axios";
+import Cookies from "js-cookie";
 
-function Dctodigitalocean({prefix_uri}) {
+function Dctodigitalocean({prefix_uri, user}) {
   const [mongoServer, setMongoServer] = useState("");
   const [websiteCode, setWebsiteCode] = useState("");
   const [inputCount, setInputCount] = useState(""); // Set initial value as an empty string
@@ -11,6 +12,7 @@ function Dctodigitalocean({prefix_uri}) {
   const [instanceName, setInstanceName] = useState("");
   const [machineFormat, setMachineFormat] = useState("");
   const [processName, setProcessName] = useState("");
+  const token = Cookies.get("access_token");
 
   const mongoServers = ["Mongo_1", "Mongo_2", "Mongo_3"];
   const websiteCodes = ["Code_1", "Code_2", "Code_3"];
@@ -33,7 +35,11 @@ function Dctodigitalocean({prefix_uri}) {
     };
 
     try {
-      const response = await axios.post(`${prefix_uri}digitalocean/launch_instance`, data);
+      const response = await axios.post(`${prefix_uri}digitalocean/launch_instance`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(response.data);
     } catch (error) {
       console.error(error);

@@ -1,11 +1,12 @@
-import { React, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-const ProtectedRoute = ({ prefix_uri,element, ...rest }) => {
+const ProtectedRoute = ({ prefix_uri, element, ...rest }) => {
   const token = Cookies.get("access_token");
   const [ckuser, setCkuser] = useState(null);
+  const [user, setUser] = useState(null);
 
   const handleProtected = async () => {
     if (!token) return;
@@ -16,12 +17,10 @@ const ProtectedRoute = ({ prefix_uri,element, ...rest }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      // console.log(response.data.logged_in_as);
+      setUser(response.data.logged_in_as);
       setCkuser(true);
-      // alert('Protected route accessed: ' + response.data.logged_in_as);
     } catch (error) {
-      setCkuser(true);  
-      // alert('Access to protected route failed');
+      setCkuser(false);  
     }
   };
 
@@ -41,7 +40,12 @@ const ProtectedRoute = ({ prefix_uri,element, ...rest }) => {
     return <Navigate to="/login" />;
   }
 
-  return element; 
+  // Use React.cloneElement to pass username as a prop
+  const clonedElement = React.cloneElement(element, { user });
+
+  
+
+  return clonedElement;
 };
 
 export default ProtectedRoute;

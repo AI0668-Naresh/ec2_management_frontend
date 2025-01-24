@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../static/css/createinstance.css";
 
-function CreateInstance() {
+function CreateInstance({user}) {
   const [processName, setProcessName] = useState("");
   const [selectedAccount, setSelectedAccount] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");

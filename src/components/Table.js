@@ -167,8 +167,10 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom'; // Import useLocation to access state
 import '../static/css/table.css'; // Assuming your CSS is in this file
 import Loading from './Loading'; // Import the Loading component
+import Cookies from 'js-cookie';
 
-function Table() {
+function Table({user}) {
+    const token = Cookies.get("access_token");
     const location = useLocation();
     const ck = location.state?.data || null; // Access the data passed via navigation
     const [data, setData] = useState([]);
@@ -180,7 +182,12 @@ function Table() {
         try {
             setLoading(true); // Set loading to true before starting the fetch
             console.log(ck);
-            const response = await axios.get(ck);
+            console.log(Cookies)
+            const response = await axios.get(ck,{
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              });
             console.log(response.data);
             setData(response.data); // Set data once it's fetched successfully
         } catch (error) {

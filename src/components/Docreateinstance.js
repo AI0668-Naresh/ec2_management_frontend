@@ -3,7 +3,7 @@ import axios from "axios";
 import "../static/css/docreateinstance.css"; // New CSS for DoCreateInstance
 import Cookies from "js-cookie"; // Assuming you have js-cookie installed and imported
 
-function DoCreateInstance( {prefix_uri}) {
+function DoCreateInstance( {prefix_uri, user}) {
   const [processName, setProcessName] = useState("");
   const [selectedAccount, setSelectedAccount] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
@@ -14,6 +14,7 @@ function DoCreateInstance( {prefix_uri}) {
   const [inputCount, setInputCount] = useState("");
   const [selectedMachineInsertFormat, setMachineInsertFormat] = useState("");
   const [imageId, setImageId] = useState("");
+  const token = Cookies.get("access_token");
 
   const accounts = ["Account_900", "Account_106", "Account_5646", "Account_365"];
   const regions = ["NYC3"];
@@ -37,8 +38,8 @@ function DoCreateInstance( {prefix_uri}) {
     };
 
     try {
-      console.log(data);
-      const response = await axios.post(`${prefix_uri}do_launch_instances`, data);
+      console.log(`${prefix_uri}launch_digitalocean_instances`, data);
+      const response = await axios.post(`${prefix_uri}launch_digitalocean_instances`, data);
       console.log(response.data);
     } catch (error) {
       console.error(error);

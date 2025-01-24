@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "../static/css/doinsertips.css";
 import axios from "axios";
+import Cookies from "js-cookie";
 
-function Doinsertips( {prefix_uri}) {
+function Doinsertips( {prefix_uri, user}) {
+  const token = Cookies.get("access_token");
   const [dropletName, setDropletName] = useState("");
   const [machineInsertFormat, setMachineInsertFormat] = useState("");
   
@@ -18,7 +20,11 @@ function Doinsertips( {prefix_uri}) {
 
     try {
       console.log(`${prefix_uri}do_insert_ips`);
-      const response = await axios.post(`${prefix_uri}do_insert_ips`, data);
+      const response = await axios.post(`${prefix_uri}do_insert_ips`, data,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(response.data);
     } catch (error) {
       console.error(error);

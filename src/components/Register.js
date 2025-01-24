@@ -3,7 +3,7 @@ import '../static/css/register.css'; // Register-specific CSS
 import showpassword from '../static/media/sleep-unscreen.gif'; // Show password GIF
 import hidepassword from '../static/media/view-unscreen.gif'; // Hide password GIF
 
-function Register({ handleRegister , username, password, setUsername, setPassword}) {
+function Register({ handleRegister , username, password, setUsername, setPassword, user}) {
   const [employeeId, setEmployeeId] = useState("");
   const [mailId, setMailId] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");

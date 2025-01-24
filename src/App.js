@@ -25,7 +25,7 @@ function App() {
   const [password, setPassword] = useState('');
   const [token, setToken] = useState('');
   const navigate = useNavigate();
-  const PREFIX_URI = "http://192.168.1.39:5000/";
+  const PREFIX_URI = "http://192.168.1.39:8000/";
 
   useEffect(() => {
     const savedToken = Cookies.get('access_token');
@@ -46,7 +46,7 @@ function App() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(`${PREFIX_URI}login`, { username, password });
+      const response = await axios.post(`http://192.168.1.109:5000/login`, { username, password });
       const { access_token } = response.data;
 
       Cookies.set('access_token', access_token, { expires: 7 });

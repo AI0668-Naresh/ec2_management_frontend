@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../static/css/awscreateprefix.css";
 import axios from "axios";
 
-function Awscreateprefix() {
+function Awscreateprefix({user}) {
   const [accountId, setAccountId] = useState("");
   const [regionId, setRegionId] = useState("");
   const [prefixName, setPrefixName] = useState("");

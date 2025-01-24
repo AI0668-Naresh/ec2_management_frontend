@@ -3,7 +3,7 @@ import Loading from './Loading';
 import { useNavigate } from 'react-router-dom';
 import '../static/css/Dolaunch.css';
 
-function Dolaunch() {
+function Dolaunch({user}) {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 

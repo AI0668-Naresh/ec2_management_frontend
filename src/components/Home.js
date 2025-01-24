@@ -5,7 +5,7 @@ import mainBackgroundVideo from '../static/media/main-back2.mp4';
 import doBackgroundVideo from '../static/media/DO1.mp4';
 import awsBackgroundVideo from '../static/media/videoplayback.mp4';
 
-function Home() {
+function Home({user}) {
   const navigate = useNavigate();
 
   const handleNavigation = (path) => {

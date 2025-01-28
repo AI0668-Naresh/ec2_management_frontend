@@ -39,7 +39,9 @@ function DoCreateInstance( {prefix_uri, user}) {
 
     try {
       console.log(`${prefix_uri}launch_digitalocean_instances`, data);
-      const response = await axios.post(`${prefix_uri}launch_digitalocean_instances`, data);
+      const response = await axios.post(`${prefix_uri}launch_digitalocean_instances`, data,{headers: {
+        Authorization: `Bearer ${token}`,
+      },});
       console.log(response.data);
     } catch (error) {
       console.error(error);

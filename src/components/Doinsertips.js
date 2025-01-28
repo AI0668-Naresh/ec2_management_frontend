@@ -7,20 +7,21 @@ function Doinsertips( {prefix_uri, user}) {
   const token = Cookies.get("access_token");
   const [dropletName, setDropletName] = useState("");
   const [machineInsertFormat, setMachineInsertFormat] = useState("");
-  
+  const username_v = Cookies.get("username");
   const machineFormats = ["DC", "Static", "Playwright"];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = {
+      username: username_v,
       dropletName,
       machineInsertFormat
     };
 
     try {
       console.log(`${prefix_uri}do_insert_ips`);
-      const response = await axios.post(`${prefix_uri}do_insert_ips`, data,{
+      const response = await axios.post(`${prefix_uri}insert_launched_digitalocean_instances_to_mongo`, data,{
         headers: {
           Authorization: `Bearer ${token}`,
         },

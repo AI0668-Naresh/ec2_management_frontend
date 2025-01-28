@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import Loading from './Loading';
 import { useNavigate } from 'react-router-dom';
 import '../static/css/Dolaunch.css';
+import Cookies from "js-cookie";
 
 function Dolaunch({user}) {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const username_v = Cookies.get("username");
 
     const handleNavigation = (url) => {
         setLoading(true);
@@ -18,11 +20,11 @@ function Dolaunch({user}) {
             {loading && <Loading />}
             <section className="buttons-container">
                 {[
-                    { label: 'Create Instance', url: '/Docreateinstance' },
-                    { label: 'Terminate Instance', url: '/Doterminateinstance' },
-                    { label: 'dc-to-DigitalOcean', url: '/Dctodigitalocean' },
-                    { label: 'Insert Ips', url: '/Doinsertips' },
-                    { label: 'List Instance', url: '/instancelist' },
+                    { label: 'launch_digitalocean_instances', url: '/Docreateinstance' },
+                    { label: 'terminate_digitalocean_instances', url: '/Doterminateinstance' },
+                    // { label: 'dc-to-DigitalOcean', url: '/Dctodigitalocean' },
+                    { label: 'insert_launched_digitalocean_instances_to_mongo', url: '/Doinsertips' },
+                    // { label: 'List Instance', url: '/instancelist' },
                 ].map(({ label, url }) => (
                     <button
                         key={label}

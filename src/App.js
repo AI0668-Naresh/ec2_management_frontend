@@ -37,6 +37,7 @@ function App() {
   const handleRegister = async () => {
     try {
       const response = await axios.post(`${PREFIX_URI}register`, { username, password });
+      console.log(response.data); 
       navigate("/login");
       alert('User registered successfully');
     } catch (error) {
@@ -46,9 +47,10 @@ function App() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(`http://192.168.1.109:5000/login`, { username, password });
-      const { access_token } = response.data;
-
+      console.log(`${PREFIX_URI}login`, { username, password });
+      const response = await axios.post(`${PREFIX_URI}login`, { username, password });
+      const access_token  = response.data;
+      console.log(response.data);
       Cookies.set('access_token', access_token, { expires: 7 });
       Cookies.set('username', username, { expires: 1 });
       setToken(access_token);

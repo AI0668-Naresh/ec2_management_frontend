@@ -12,7 +12,9 @@ const ProtectedRoute = ({ prefix_uri, element, ...rest }) => {
     if (!token) return;
 
     try {
-      const response = await axios.get('http://192.168.1.109:5000/protected', {
+      console.log(`${prefix_uri}protected`);
+      console.log(`Bearer ${token}`)
+      const response = await axios.get(`${prefix_uri}protected`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

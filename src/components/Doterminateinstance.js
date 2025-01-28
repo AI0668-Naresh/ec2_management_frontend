@@ -10,6 +10,7 @@ function DoTerminateInstance({ prefix_uri, user}) {
   const [instanceNames, setInstanceNames] = useState("");
   const [instanceIds, setInstanceIds] = useState("");
   const [instanceIps, setInstanceIps] = useState("");
+  const username_v = Cookies.get("username");
 
   const accounts = ["Account_900", "Account_106", "Account_5646", "Account_365"];
   const regions = ["us-east-1", "us-east-2", "us-west-1", "us-west-2"];
@@ -17,6 +18,7 @@ function DoTerminateInstance({ prefix_uri, user}) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
+      username: username_v,
       account: selectedAccount,
       region: selectedRegion,
       details:
@@ -28,7 +30,9 @@ function DoTerminateInstance({ prefix_uri, user}) {
     };
 
     try {
-      const response = await axios.post(`${prefix_uri}terminate_digitalocean_instances`, {"Sfg":"Wefrg"});
+      const response = await axios.post(`${prefix_uri}terminate_digitalocean_instances`, data, {headers: {
+        Authorization: `Bearer ${token}`,
+      },});
       console.log(response.data);
     } catch (error) {
       console.error(error);

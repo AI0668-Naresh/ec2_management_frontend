@@ -40,9 +40,16 @@ function DoTerminateInstance({ prefix_uri, user}) {
       const response = await axios.post(`${prefix_uri}terminate_digitalocean_instances`, data, {headers: {
         Authorization: `Bearer ${token}`,
       },});
-      console.log(response.data);
+      setPopupMessage(response.data.data);
+      if (response.data.message === "success") {
+        setSuccess(true);
+      }
+      
     } catch (error) {
       console.error(error);
+    }
+    finally {
+      setLoading(false);
     }
   };
 

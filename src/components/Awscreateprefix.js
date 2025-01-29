@@ -32,8 +32,11 @@ function Awscreateprefix({user}) {
 
     try {
       const response = await axios.post("http://192.168.1.109:5000/aws/create_prefixlist", data);
+      setPopupMessage(response.data.data);
+      if (response.data.message === "success") {
         setSuccess(true);
-        setPopupMessage(response.data);
+      }
+        
     } finally {
       setLoading(false);
     }

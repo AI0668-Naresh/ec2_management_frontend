@@ -32,9 +32,16 @@ function Doinsertips( {prefix_uri, user}) {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response.data);
+      setPopupMessage(response.data.data);
+      if (response.data.message === "success") {
+        setSuccess(true);
+      }
+      
     } catch (error) {
       console.error(error);
+    }
+    finally {
+      setLoading(false);
     }
   };
 

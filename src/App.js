@@ -21,6 +21,7 @@ import Dctodigitalocean from './components/Dctodigitalocean';
 import Doinsertips from './components/Doinsertips';
 import Awscreateprefix from './components/Awscreateprefix';
 function App() {
+  const token_c = Cookies.get("access_token");
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [token, setToken] = useState('');
@@ -36,8 +37,18 @@ function App() {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post(`${PREFIX_URI}register`, { username, password });
-      console.log(response.data); 
+      console.log(`${PREFIX_URI}register`, { username, password });
+      console.log(token_c);
+      const response = await axios.post(
+        `${PREFIX_URI}register`,
+        { username, password },
+        {
+          headers: {
+            Authorization: `Bearer ${token_c}`,
+          },
+        }
+      );
+      console.log(response.data);
       navigate("/login");
       alert('User registered successfully');
     } catch (error) {

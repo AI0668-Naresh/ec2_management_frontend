@@ -9,9 +9,15 @@ function Doinsertips( {prefix_uri, user}) {
   const [machineInsertFormat, setMachineInsertFormat] = useState("");
   const username_v = Cookies.get("username");
   const machineFormats = ["DC", "Static", "Playwright"];
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setSuccess(false);
+    setPopupMessage("");
 
     const data = {
       username: username_v,
@@ -71,10 +77,25 @@ function Doinsertips( {prefix_uri, user}) {
         </div>
 
         {/* Submit Button */}
-        <button type="submit" className="btn btn-success" disabled={!machineInsertFormat || !dropletName}>
+        {/* <button type="submit" className="btn btn-success" disabled={!machineInsertFormat || !dropletName}>
           Insert Tips
-        </button>
+        </button> */}
+         <button
+            type="submit"
+            className={`btn btn-success ${loading ? "btn-loading" : ""}`}
+            disabled={!machineInsertFormat || !dropletName}
+          >
+            {loading ? (
+              <span className="loading-spinner"></span>
+            ) : success ? (
+              <span className="btn-success">✔</span>
+            ) : (
+              "Insert Ips"
+            )}
+          </button>
+
       </form>
+      {popupMessage && <div className="popup-message">{popupMessage}</div>}
     </div>
     </div>
   );

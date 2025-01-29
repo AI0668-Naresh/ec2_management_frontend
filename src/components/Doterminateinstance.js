@@ -4,22 +4,29 @@ import axios from "axios";
 import Cookies from "js-cookie";
 function DoTerminateInstance({ prefix_uri, user}) {
   const token = Cookies.get("access_token");
-  const [selectedAccount, setSelectedAccount] = useState("");
+  // const [selectedAccount, setSelectedAccount] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const [instanceNames, setInstanceNames] = useState("");
   const [instanceIds, setInstanceIds] = useState("");
   const [instanceIps, setInstanceIps] = useState("");
   const username_v = Cookies.get("username");
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
 
-  const accounts = ["Account_900", "Account_106", "Account_5646", "Account_365"];
-  const regions = ["us-east-1", "us-east-2", "us-west-1", "us-west-2"];
+  // const accounts = ["Account_900", "Account_106", "Account_5646", "Account_365"];
+  const regions = ["NYC1", "NYC2", "NYC3"];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setSuccess(false);
+    setPopupMessage("");
+
     const data = {
       username: username_v,
-      account: selectedAccount,
+      // account: selectedAccount,
       region: selectedRegion,
       details:
         selectedOption === "Name"
@@ -45,7 +52,7 @@ function DoTerminateInstance({ prefix_uri, user}) {
       <h2>Terminate Instance</h2>
       <form className="terminate-instance-form" onSubmit={handleSubmit}>
         {/* Account */}
-        <div className="form-group">
+        {/* <div className="form-group">
           <label>Account</label>
           <select
             className="form-control"
@@ -60,7 +67,7 @@ function DoTerminateInstance({ prefix_uri, user}) {
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
 
         {/* Region */}
         <div className="form-group">
@@ -70,7 +77,7 @@ function DoTerminateInstance({ prefix_uri, user}) {
             value={selectedRegion}
             onChange={(e) => setSelectedRegion(e.target.value)}
             required
-            disabled={!selectedAccount} // Disabled until Account is selected
+            // disabled={!selectedAccount} // Disabled until Account is selected
           >
             <option value="">Select Region</option>
             {regions.map((region) => (
@@ -170,14 +177,28 @@ function DoTerminateInstance({ prefix_uri, user}) {
         )}
 
         {/* Submit Button */}
-        <button
+        {/* <button
           type="submit"
           className="btn btn-danger"
           disabled={!selectedOption || (!instanceNames && !instanceIds && !instanceIps)}
         >
           Terminate Instance
-        </button>
+        </button> */}
+        <button
+            type="submit"
+            className={`btn btn-danger ${loading ? "btn-loading" : ""}`}
+            disabled={!selectedOption || (!instanceNames && !instanceIds && !instanceIps)}
+          >
+            {loading ? (
+              <span className="loading-spinner"></span>
+            ) : success ? (
+              <span className="btn-success">✔</span>
+            ) : (
+              "Terminate Instance"
+            )}
+          </button>
       </form>
+      {popupMessage && <div className="popup-message">{popupMessage}</div>}
     </div>
     </div>
   );

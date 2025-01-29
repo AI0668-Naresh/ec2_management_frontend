@@ -8,30 +8,37 @@ function DoCreateInstance( {prefix_uri, user}) {
   const [selectedAccount, setSelectedAccount] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
   const [instanceName, setInstanceName] = useState("");
-  const [selectedIp, setSelectedIp] = useState("");
+  // const [selectedIp, setSelectedIp] = useState("");
   const [selectedCountOption, setSelectedCountOption] = useState("");
   const [machineCount, setMachineCount] = useState("");
   const [inputCount, setInputCount] = useState("");
-  const [selectedMachineInsertFormat, setMachineInsertFormat] = useState("");
+  // const [selectedMachineInsertFormat, setMachineInsertFormat] = useState("");
   const [imageId, setImageId] = useState("");
   const token = Cookies.get("access_token");
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
+  
 
-  const accounts = ["Account_900", "Account_106", "Account_5646", "Account_365"];
-  const regions = ["NYC3"];
-  const machineInsertFormats = ["xxxx", "yyy", "zzz"];
+  const accounts = ["Devops", "DC"];
+  const regions = ["NYC1","NYC2","NYC3"];
+  // const machineInsertFormats = ["DC", "Playwright", "Static"];
 
   const username_v = Cookies.get("username");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setSuccess(false);
+    setPopupMessage("");
     const data = {
       username: username_v,
       processName,
       selectedAccount,
       selectedRegion,
       instanceName,
-      ip: selectedIp,
-      machineInsertFormat: selectedMachineInsertFormat,
+      // ip: selectedIp,
+      // machineInsertFormat: selectedMachineInsertFormat,
       count: selectedCountOption === "MachineCount" ? machineCount : inputCount,
       imageId,
       // "gflags":"ygghgfh"
@@ -71,14 +78,15 @@ function DoCreateInstance( {prefix_uri, user}) {
             onKeyDown={(e) => handleKeyDown(e, document.getElementById("account"))}
           >
             <option value="">Select Process Name</option>
-            <option value="Process 1">Process 1</option>
-            <option value="Process 2">Process 2</option>
+            <option value="Process 1">Hospitality</option>
+            <option value="Process 2">Cars</option>
+            <option value="Process 2">Flights</option>
           </select>
         </div>
 
         {/* Account */}
         <div className="form-group">
-          <label>Account</label>
+          <label>Project</label>
           <select
             className="form-control"
             value={selectedAccount}
@@ -133,7 +141,7 @@ function DoCreateInstance( {prefix_uri, user}) {
         </div>
 
         {/* Machine Insert Format */}
-        <div className="form-group" id="machineInsertFormat">
+        {/* <div className="form-group" id="machineInsertFormat">
           <label>Machine Insert Format</label>
           <select
             className="form-control"
@@ -150,7 +158,7 @@ function DoCreateInstance( {prefix_uri, user}) {
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
 
         {/* Image ID */}
         <div className="form-group" id="imageId">
@@ -161,7 +169,7 @@ function DoCreateInstance( {prefix_uri, user}) {
             value={imageId}
             onChange={(e) => setImageId(e.target.value)}
             required
-            disabled={!selectedMachineInsertFormat}
+            disabled={!instanceName}
           />
         </div>
 
@@ -217,11 +225,27 @@ function DoCreateInstance( {prefix_uri, user}) {
         </div>
 
         {/* Submit Button */}
-        <button type="submit" className="btn btn-success" disabled={!instanceName || !imageId}>
+        {/* <button type="submit" className="btn btn-success" disabled={!instanceName || !imageId}>
           Launch Instance
         </button>
       </form>
-    </div>
+    </div> */}
+    <button
+            type="submit"
+            className={`btn btn-success ${loading ? "btn-loading" : ""}`}
+            disabled={!instanceName || !imageId}
+          >
+            {loading ? (
+              <span className="loading-spinner"></span>
+            ) : success ? (
+              <span className="btn-success">✔</span>
+            ) : (
+              "Launch Instance"
+            )}
+          </button>
+        </form>
+        {popupMessage && <div className="popup-message">{popupMessage}</div>}
+      </div>
   );
 }
 

@@ -111,4 +111,29 @@
       font-size: 14px;
     }
   }
-  
+  /* Success Tick */
+.btn-success {
+  font-size: 16px;
+  color: #28a745;
+  font-weight: bold;
+}
+
+/* Popup Message */
+.popup-message {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.popup-message.success {
+  color: #28a745;
+}
+
+.popup-message.error {
+  color: #dc3545;
+}

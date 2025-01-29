@@ -1,5 +1,6 @@
 # Step 1: Set up the base image
-FROM node:16 AS build
+FROM node:20 AS build
+
 
 # Step 2: Set the working directory inside the container
 WORKDIR /app

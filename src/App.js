@@ -35,13 +35,13 @@ function App() {
     }
   }, []);
 
-  const handleRegister = async () => {
+  const handleRegister = async (obj) => {
     try {
-      console.log(`${PREFIX_URI}register`, { username, password });
+      console.log(`${PREFIX_URI}register`, { username, password, });
       console.log(token_c);
       const response = await axios.post(
         `${PREFIX_URI}register`,
-        { username, password },
+        obj,
         {
           headers: {
             Authorization: `Bearer ${token_c}`,

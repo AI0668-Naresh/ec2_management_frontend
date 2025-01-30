@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
+import Loading from "./Loading";
 
 const ProtectedRoute = ({ prefix_uri, element, ...rest }) => {
   const token = Cookies.get("access_token");
@@ -19,6 +20,8 @@ const ProtectedRoute = ({ prefix_uri, element, ...rest }) => {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log(response);
+      console.log(response.data);
       setUser(response.data.logged_in_as);
       setCkuser(true);
     } catch (error) {
@@ -35,7 +38,7 @@ const ProtectedRoute = ({ prefix_uri, element, ...rest }) => {
   }, [token,element]);
 
   if (ckuser === null) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (!token || ckuser === false) {

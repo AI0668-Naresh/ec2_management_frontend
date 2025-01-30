@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import "../static/css/awscreateprefix.css";
 import axios from "axios";
 
@@ -15,6 +15,7 @@ function Awscreateprefix({user}) {
   const accountIds = ["Account_900", "Account_106", "Account_5646", "Account_365"];
   const regionIds = ["us-east-1", "us-east-2", "us-west-1", "us-west-2"];
   const addressTypes = ["IPv4", "IPv6"];
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();

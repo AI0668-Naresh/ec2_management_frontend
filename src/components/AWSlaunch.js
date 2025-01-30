@@ -11,6 +11,7 @@ function AWSlaunch({user}) {
         const data = `${temp}${url}`;
         navigate(url, { state: { data } });
     };
+
     return (
         <div className="dolaunch-container">
             <section className="buttons-container">

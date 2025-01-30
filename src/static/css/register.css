@@ -129,3 +129,101 @@
         width: 90%;
     }
 }
+
+
+/* Checkbox Group */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1rem;
+    color: #fff;
+}
+
+/* Checkbox Styling */
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.checkbox-group input {
+    margin-right: 10px;
+    transform: scale(1.2);  /* Makes the checkbox slightly larger */
+    cursor: pointer;
+}
+
+/* Individual AWS and DO Boxes */
+.aws-box, .do-box {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.aws-box label, .do-box label {
+    font-size: 1rem;
+    color: #fff;
+}
+
+/* Adjusted for responsive design */
+@media (max-width: 600px) {
+    .checkbox-group {
+        margin-left: 0;
+    }
+}
+
+
+/* AWS Page Access */
+.aws-page, .do-page {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 8px;
+    color: #fff;
+    border: 1px solid #444;
+}
+
+/* AWS Page Styling */
+.aws-page h3 {
+    font-size: 1.5rem;
+    color: #01d28e;
+}
+
+/* DigitalOcean Page Styling */
+.do-page h3 {
+    font-size: 1.5rem;
+    color: #01d28e;
+}
+
+/* Page Access Group */
+.page-access {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #333;
+    border-radius: 8px;
+}
+
+/* Page Access Checkbox Group */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1rem;
+    color: #fff;
+}
+
+/* Checkbox Styling */
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.checkbox-group input {
+    margin-right: 10px;
+    transform: scale(1.2); /* Enlarges the checkbox */
+    cursor: pointer;
+}

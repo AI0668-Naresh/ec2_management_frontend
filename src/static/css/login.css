@@ -4,6 +4,9 @@
     padding: 0;
     box-sizing: border-box;
   }
+  h2, :placeholder-shown, p {
+    user-select: none;
+  }
   
   /* Background and Layout */
   .login-container {

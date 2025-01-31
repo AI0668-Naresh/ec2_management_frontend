@@ -3,6 +3,7 @@ import Loading from './Loading';
 import { useNavigate } from 'react-router-dom';
 import '../static/css/AWSlaunch.css';
 
+
 function AWSlaunch({user}) {
     const navigate = useNavigate();
     const temp = 'http://192.168.1.109:5000/aws';

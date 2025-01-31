@@ -27,6 +27,7 @@ function DoCreateInstance( {prefix_uri, user}) {
   const username_v = Cookies.get("username");
 
   const handleSubmit = async (e) => {
+    // disable submit button
     e.preventDefault();
     setLoading(true);
     setSuccess(false);
@@ -43,6 +44,7 @@ function DoCreateInstance( {prefix_uri, user}) {
       imageId,
       // "gflags":"ygghgfh"
     };
+  
 
     try {
       console.log(`${prefix_uri}launch_digitalocean_instances`, data);
@@ -242,7 +244,7 @@ function DoCreateInstance( {prefix_uri, user}) {
     <button
             type="submit"
             className={`btn btn-success ${loading ? "btn-loading" : ""}`}
-            disabled={!instanceName || !imageId}
+            disabled={!instanceName || !imageId || loading}
           >
             {loading ? (
               <span className="loading-spinner"></span>

@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -20,11 +22,13 @@ import Doterminateinstance from './components/Doterminateinstance';
 import Dctodigitalocean from './components/Dctodigitalocean';
 import Doinsertips from './components/Doinsertips';
 import Awscreateprefix from './components/Awscreateprefix';
+
 function App() {
   const token_c = Cookies.get("access_token");
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [token, setToken] = useState('');
+  const [user, setUser] = useState(null);  // User state
   const navigate = useNavigate();
   const PREFIX_URI = "http://192.168.1.39:8000/";
 
@@ -37,8 +41,7 @@ function App() {
 
   const handleRegister = async (obj) => {
     try {
-      console.log(`${PREFIX_URI}register`, { username, password, });
-      console.log(token_c);
+      // console.log(`${PREFIX_URI}register`, { username, password });
       const response = await axios.post(
         `${PREFIX_URI}register`,
         obj,
@@ -50,7 +53,7 @@ function App() {
       );
       console.log(response.data);
       navigate("/login");
-      alert('User registered successfully');
+      alert(response.data.data);
     } catch (error) {
       alert('Error registering user');
     }
@@ -60,11 +63,11 @@ function App() {
     try {
       console.log(`${PREFIX_URI}login`, { username, password });
       const response = await axios.post(`${PREFIX_URI}login`, { username, password });
-      const access_token  = response.data;
-      console.log(response.data);
+      const access_token = response.data;
       Cookies.set('access_token', access_token, { expires: 7 });
       Cookies.set('username', username, { expires: 1 });
       setToken(access_token);
+      setUser(response.data.logged_in_as);  // Set user data
       navigate("/home");
       alert('Login successful');
     } catch (error) {
@@ -75,6 +78,7 @@ function App() {
   const handleLogout = () => {
     Cookies.remove('access_token');
     setToken('');
+    setUser(null);  // Clear user data
     alert('Logged out');
   };
 
@@ -88,62 +92,62 @@ function App() {
         />
         <Route
           path="/"
-          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Home />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Home user={user} />} />}
         />
         <Route
           path="/instancelist"
-          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Table />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Table user={user} />} />}
         />
         <Route
           path="/prefixlist"
-          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Table />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Table user={user} />} />}
         />
         <Route
           path="/subnetlist"
-          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Table />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Table user={user} />} />}
         />
         <Route
           path="/SGlist"
-          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Table />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Table user={user} />} />}
         />
         <Route
           path="/amilist"
-          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Table />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Table user={user} />} />}
         />
         <Route
-          path='/Docreateinstance'
-          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Docreateinstance prefix_uri={PREFIX_URI}/>} />} />
+          path='/launch_digitalocean_instances'
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Docreateinstance user={user} prefix_uri={PREFIX_URI}/>} />} />
         <Route
-          path='/Doterminateinstance'
-          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Doterminateinstance prefix_uri={PREFIX_URI} />} />} />
-          <Route
+          path='/terminate_digitalocean_instances'
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Doterminateinstance user={user} prefix_uri={PREFIX_URI} />} />} />
+        <Route
           path='/Dctodigitalocean'
-          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Dctodigitalocean prefix_uri={PREFIX_URI} />} />} />
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Dctodigitalocean user={user} prefix_uri={PREFIX_URI} />} />} />
         <Route
-          path='/Doinsertips'
-          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Doinsertips prefix_uri={PREFIX_URI}/>} />} />
+          path='/insert_launched_digitalocean_instances_to_mongo'
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Doinsertips user={user} prefix_uri={PREFIX_URI}/>} />} />
         <Route
           path='/createinstance'
-          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Createinstance prefix_uri={PREFIX_URI}/>} />} />
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Createinstance user={user} prefix_uri={PREFIX_URI}/>} />} />
         <Route
           path="/Dolaunch"
-          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Dolaunch prefix_uri={PREFIX_URI}/>} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Dolaunch user={user} prefix_uri={PREFIX_URI}/>} />}
         />
         <Route
           path="/AWSlaunch"
-          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<AWSlaunch prefix_uri={PREFIX_URI}/>} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<AWSlaunch user={user} prefix_uri={PREFIX_URI}/>} />}
         />
         <Route
           path="/Awscreateprefix"
-          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Awscreateprefix prefix_uri={PREFIX_URI}/>} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Awscreateprefix user={user} prefix_uri={PREFIX_URI}/>} />}
         />
         <Route
           path="/about"
-          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<About prefix_uri={PREFIX_URI}/>} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<About user={user} prefix_uri={PREFIX_URI}/>} />}
         />
         <Route
           path="/register"
-          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Register prefix_uri={PREFIX_URI} handleRegister={handleRegister} username={username} password={password} setUsername={setUsername} setPassword={setPassword} />} />}
+          element={<ProtectedRoute prefix_uri={PREFIX_URI} element={<Register user={user} prefix_uri={PREFIX_URI} handleRegister={handleRegister} username={username} password={password} setUsername={setUsername} setPassword={setPassword} />} />}
         />
         <Route
           path="/login"

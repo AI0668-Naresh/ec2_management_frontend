@@ -90,7 +90,7 @@ function Doinsertips( {prefix_uri, user}) {
          <button
             type="submit"
             className={`btn btn-success ${loading ? "btn-loading" : ""}`}
-            disabled={!machineInsertFormat || !dropletName}
+            disabled={!machineInsertFormat || !dropletName || loading}
           >
             {loading ? (
               <span className="loading-spinner"></span>

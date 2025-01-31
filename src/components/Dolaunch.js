@@ -1,13 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Loading from './Loading';
 import { useNavigate } from 'react-router-dom';
 import '../static/css/Dolaunch.css';
 import Cookies from "js-cookie";
+import axios from "axios";
 
-function Dolaunch({user}) {
+function Dolaunch({ user }) {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    const username_v = Cookies.get("username");
+    const token = Cookies.get("access_token");
+    const [privileges, setPrivileges] = useState([]);
+    
+    // Use useEffect to fetch data when the component mounts or when user.role changes
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+                const response = await axios.get("http://192.168.1.39:8000/get_user_roles_priviliges", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                setPrivileges(response.data.data[0]['do_privileges']);
+            } catch (error) {
+                console.log("Error while fetching");
+            }
+        };
+
+        if (user.role === 'admin') {
+            fetchdata();
+        } else {
+            setPrivileges(user.privileges.doPageAccess);
+        }
+    }, [user.role, token]); // Re-run the effect only if user.role or token changes
 
     const handleNavigation = (url) => {
         setLoading(true);
@@ -15,17 +39,17 @@ function Dolaunch({user}) {
         setLoading(false);
     };
 
+    // Build the buttons based on privileges
+    const buttons = privileges.map(privilege => ({
+        label: privilege,
+        url: `/${privilege}`
+    }));
+
     return (
         <div className="dolaunch-container">
             {loading && <Loading />}
             <section className="buttons-container">
-                {[
-                    { label: 'launch_digitalocean_instances', url: '/Docreateinstance' },
-                    { label: 'terminate_digitalocean_instances', url: '/Doterminateinstance' },
-                    // { label: 'dc-to-DigitalOcean', url: '/Dctodigitalocean' },
-                    { label: 'insert_launched_digitalocean_instances_to_mongo', url: '/Doinsertips' },
-                    // { label: 'List Instance', url: '/instancelist' },
-                ].map(({ label, url }) => (
+                {buttons.map(({ label, url }) => (
                     <button
                         key={label}
                         aria-label={label}

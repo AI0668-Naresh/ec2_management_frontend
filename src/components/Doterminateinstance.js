@@ -194,7 +194,7 @@ function DoTerminateInstance({ prefix_uri, user}) {
         <button
             type="submit"
             className={`btn btn-danger ${loading ? "btn-loading" : ""}`}
-            disabled={!selectedOption || (!instanceNames && !instanceIds && !instanceIps)}
+            disabled={!selectedOption || (!instanceNames && !instanceIds && !instanceIps) || loading}
           >
             {loading ? (
               <span className="loading-spinner"></span>
